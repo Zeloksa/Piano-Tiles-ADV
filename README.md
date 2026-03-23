@@ -4,7 +4,7 @@
 ![License](https://img.shields.io/badge/License-Proprietary-gray)
 [![Boosty](https://img.shields.io/badge/Support-Boosty-orange)](https://boosty.to/zeloksa)
 
-# 🎹 Piano Tiles ADV (V1.0)
+# 🎹 Piano Tiles ADV (V1.2)
 
 **Piano Tiles ADV** is a high-performance, 60 FPS rhythm game completely engineered and optimized from the ground up for the **M5Stack Cardputer**. It features 7 full-length 8-bit covers, dynamic difficulty scaling, and a custom DSP audio engine for crystal-clear piezo speaker output.
 
