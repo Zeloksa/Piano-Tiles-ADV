@@ -1,4 +1,4 @@
-![Version](https://img.shields.io/badge/Version-1.0_ADV-blue)
+![Version](https://img.shields.io/badge/Version-1.2_ADV-blue)
 ![Hardware](https://img.shields.io/badge/Hardware-Cardputer-orange)
 ![Platform](https://img.shields.io/badge/Platform-M5Stack-red)
 ![License](https://img.shields.io/badge/License-Proprietary-gray)
@@ -6,7 +6,7 @@
 
 # 🎹 Piano Tiles ADV (V1.2)
 
-**Piano Tiles ADV** is a high-performance, 60 FPS rhythm game completely engineered and optimized from the ground up for the **M5Stack Cardputer**. It features 7 full-length 8-bit covers, dynamic difficulty scaling, and a custom DSP audio engine for crystal-clear piezo speaker output.
+**Piano Tiles ADV** is a high-performance, 60 FPS rhythm game completely engineered and optimized from the ground up for the **M5Stack Cardputer**. It features **12** full-length 8-bit covers, dynamic difficulty scaling, new "Hold Notes" mechanics, and a custom DSP audio engine for crystal-clear piezo speaker output.
 
 > [!IMPORTANT]
 > **Source Code Status:** This project is proprietary. The source code is private. 
@@ -17,10 +17,11 @@
 ## ⚡ Technical Highlights
 
 * **Cubic ADSR Audio Engine:** Custom digital signal processing applies a 120ms cubic fade-out to all square waves. This completely eliminates hardware "speaker clicks" and pops, providing a smooth, synthesizer-like retro sound.
-* **Dynamic Difficulty (Math-Driven):** As track progress goes from 0% to 100%, the physics engine dynamically increases tile fall speed by up to 25% while tightening the tempo. The closer you get to the end, the harder it gets.
+* **Advanced Hold Notes Mechanic:** Long notes require continuous key presses. Features dynamic tile height calculation and a custom color-blending "saturate fill" (Cosmic Purple) effect based on hit-zone intersection math.
+* **Hardware-Level I2C Debouncing:** Custom `holdGrace` logic prevents dropped inputs and ghosting when holding keys via the Cardputer's I2C matrix keyboard. Every physical key on a row is mapped for maximum responsiveness.
+* **Dynamic Difficulty (Math-Driven):** As track progress goes from 0% to 100%, the physics engine dynamically increases tile fall speed by up to 25% while tightening the tempo.
 * **SD Card Progression System:** Automatically creates a `piano_save.txt` file on your TF/SD card to permanently store your per-track High Scores and Star Ratings.
-* **Memory Guard & Anti-Ghosting:** Intelligent keyboard matrix debouncing and a strict 100-particle rendering limit ensure the ESP32-S3 never drops below 60 FPS, even when spamming buttons during chaotic Bonus Rounds.
-* **7 Full-Length 8-Bit Tracks:** Includes extended versions of Mario, Tetris, Star Wars, Megalovania, Nyan Cat, Doom E1M1 (with dual-channel bass distortion), and Gravity Falls (featuring complex syncopated rhythms).
+* **12 Full-Length 8-Bit Tracks:** Includes extended, multi-part arrangements of Mario, Tetris, Star Wars, Megalovania, Nyan Cat, Doom E1M1 (with dynamic bass boost), Gravity Falls, Faded, Interstellar, Rush E, Seven Nation Army, and Sweet Dreams.
 
 ---
 
@@ -33,12 +34,11 @@
 
 ## 🕹 Controls
 
-The Cardputer's keyboard acts as your piano. The keys are mapped to the 3 vertical lanes:
-* **[ Z, X, C, V, B, N, M, ,, ., / ]** (Bottom Row): Left Lane / Menu Swipe Left
-* **[ A, S, D, F, G, H, J, K, L, ;, ' ]** (Middle Row): Center Lane / Menu Select
-* **[ Q, W, E, R, T, Y, U, I, O, P, [, ] ]** (Top Row): Right Lane / Menu Swipe Right
-* **[ 1, 2, 3 ... Backspace ]** (Number Row): Pause / Resume Game
-* **[ ENTER ]**: Confirm / Exit Game Over Screen
+The entire Cardputer keyboard acts as your piano. The keys are horizontally mapped to the 3 vertical lanes (including all modifier keys):
+* **[ CTRL, ALT, Space, Z, X, C, V, B, N, M, ,, ., / ]** (Bottom Row): Left Lane / Menu Swipe Left
+* **[ Shift, A, S, D, F, G, H, J, K, L, ;, ', Enter ]** (Middle Row): Center Lane / Menu Select
+* **[ Tab, Q, W, E, R, T, Y, U, I, O, P, [, ], \ ]** (Top Row): Right Lane / Menu Swipe Right
+* **[ 1, 2, 3 ... Backspace, Esc ]** (Number Row): Pause / Resume Game
 
 ---
 
@@ -47,17 +47,18 @@ The Cardputer's keyboard acts as your piano. The keys are mapped to the 3 vertic
 ### 🎵 Main Menu & Progression
 Swipe Left/Right using the top and bottom keyboard rows to navigate the carousel. 
 * Each track displays your personal **High Score (HS)** and up to **3 Stars** based on your best completion percentage (33%, 66%, and 99%).
-* The title uses a mathematical Lissajous curve animation for a smooth, floating UI effect.
+* The title uses a mathematical Lissajous curve animation for a smooth, floating UI effect, and each track features custom 8-bit pixel art icons.
 
 ### 🎮 Gameplay Mechanics
 Tiles fall down 3 distinct lanes. You must strike any key in the corresponding keyboard row before the tile passes the red hit-zone line at the bottom of the screen.
+* **Hold Notes:** Tiles with a grey strip and yellow indicator must be held down until they fully cross the line. Releasing early will cost you a life.
 * **Lives System:** You have 4 lives (represented by 3 hearts on screen). You are allowed 3 mistakes. Missing a tile drops a life and shatters a heart.
 * **Pause Mode:** Pressing any number key pauses the game. Resuming triggers a smooth 3-second countdown timer so you can prepare your fingers.
 
 ### 💰 The Bonus Round
 If you successfully survive 100% of a track, the Victory Jingle plays and you instantly enter the Bonus Round. 
 * For 7 seconds, golden "Money Tiles" will rapidly fall down the screen. 
-* Spam the keyboard rows to collect them. Each collected golden tile grants +50 points to push your High Score to the absolute limit.
+* Spam the keyboard rows to collect them. Each collected golden tile grants **+5 points** to push your High Score to the absolute limit.
 
 ### ⚙ Settings
 Access the Settings menu from the first card in the carousel.
@@ -66,12 +67,17 @@ Access the Settings menu from the first card in the carousel.
 
 ---
 
-## 🆕 Piano Tiles ADV (V1.0) Changelog
-* **Initial Release:** Built the core 60 FPS physics engine and track parser.
-* **Audio Overhaul:** Replaced standard `tone()` stops with a 120ms Cubic ADSR envelope to fix hardware clipping.
-* **Track Expansion:** Extended all original tracks by 50% and added Doom E1M1, Nyan Cat, and Gravity Falls.
-* **Data Persistence:** Implemented scalable SD card parsing for High Scores and Stars.
-* **UI/UX:** Added custom pixel-art icons, fake-bold text rendering for scores, and fixed matrix ghosting during menu navigation.
+## 🆕 V1.2 Changelog
+* **Major Feature:** Added **Hold Notes** (long tiles) with custom visual saturation and continuous score ticking.
+* **Expanded Library:** Added 5 new tracks (*Faded, Interstellar, Rush E, Seven Nation Army, Sweet Dreams*). Total tracks: 12.
+* **Track Extensions:** Significantly extended the arrangements for *Megalovania, Star Wars, Gravity Falls*, and *Doom E1M1*.
+* **Engine Polish:** Added I2C `holdGrace` mechanism to fix hardware button-drop during long holds. Fully mapped all physical keys to their respective lanes.
+* **Bug Fixes:** Fixed instant-death bug upon track selection, perfectly centered the Pause UI, optimized text shadows.
+* **Audio:** Added a dynamic +90% volume boost specifically for heavy tracks.
+
+## 🚀 Roadmap (Upcoming in V1.3)
+* **Smash Notes Mechanics:** Destructible, multi-hit heavy tiles that slow down time and require rapid button spamming to break.
+* New aggressive tracks designed specifically for the Smash mechanic.
 
 ---
 
