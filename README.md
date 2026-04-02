@@ -28,7 +28,7 @@
 ## 🛠 Installation
 ### Method 1: M5Burner (Recommended)
 1. Open **M5Burner**.
-2. Search for `Alchemy ADV` or `Zeloksa`.
+2. Search for `Piano Tiles ADV` or `Zeloksa`.
 3. Select version **V1.0**.
 4. Burn to your M5Stack Cardputer.
 
