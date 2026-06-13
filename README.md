@@ -1,12 +1,12 @@
-![Version](https://img.shields.io/badge/Version-1.2_ADV-blue)
+![Version](https://img.shields.io/badge/Version-2.0_ADV-blue)
 ![Hardware](https://img.shields.io/badge/Hardware-Cardputer-orange)
 ![Platform](https://img.shields.io/badge/Platform-M5Stack-red)
 ![License](https://img.shields.io/badge/License-Proprietary-gray)
 [![Boosty](https://img.shields.io/badge/Support-Boosty-orange)](https://boosty.to/zeloksa)
 
-# 🎹 Piano Tiles ADV (V1.2)
+# 🎹 Piano Tiles ADV (V2.0)
 
-**Piano Tiles ADV** is a high-performance, 60 FPS rhythm game completely engineered and optimized from the ground up for the **M5Stack Cardputer**. It features **12** full-length 8-bit covers, dynamic difficulty scaling, new "Hold Notes" mechanics, and a custom DSP audio engine for crystal-clear piezo speaker output.
+**Piano Tiles ADV** is a high-performance, 60 FPS rhythm game completely engineered and optimized from the ground up for the **M5Stack Cardputer**. Now featuring a massive library of **54** full-length tracks across **5 Themed Music Packs**, dynamic difficulty scaling, "Hold Notes" mechanics, immersive animated backgrounds, and a custom DSP audio engine for crystal-clear piezo speaker output.
 
 > [!IMPORTANT]
 > **Source Code Status:** This project is proprietary. The source code is private. 
@@ -16,20 +16,21 @@
 
 ## ⚡ Technical Highlights
 
-* **Cubic ADSR Audio Engine:** Custom digital signal processing applies a 120ms cubic fade-out to all square waves. This completely eliminates hardware "speaker clicks" and pops, providing a smooth, synthesizer-like retro sound.
+* **Massive 54-Track Library:** Play through 5 themed packs: *Classics*, *Anime Hits*, *Gaming Legends*, *Movie Epics*, and *Rock Legends*. Every track is a full-length, high-scoring arrangement (80 to 120+ notes).
 * **Advanced Hold Notes Mechanic:** Long notes require continuous key presses. Features dynamic tile height calculation and a custom color-blending "saturate fill" (Cosmic Purple) effect based on hit-zone intersection math.
+* **Immersive Visuals & UI:** Features 5 distinct animated backgrounds (Synthwave Grid, Cherry Blossoms, Digital Matrix, Film Strip, Concert Lasers), dynamic pack selection UI, and custom 8-bit pixel art icons for every single track.
 * **Hardware-Level I2C Debouncing:** Custom `holdGrace` logic prevents dropped inputs and ghosting when holding keys via the Cardputer's I2C matrix keyboard. Every physical key on a row is mapped for maximum responsiveness.
 * **Dynamic Difficulty (Math-Driven):** As track progress goes from 0% to 100%, the physics engine dynamically increases tile fall speed by up to 25% while tightening the tempo.
-* **SD Card Progression System:** Automatically creates a `piano_save.txt` file on your TF/SD card to permanently store your per-track High Scores and Star Ratings.
-* **12 Full-Length 8-Bit Tracks:** Includes extended, multi-part arrangements of Mario, Tetris, Star Wars, Megalovania, Nyan Cat, Doom E1M1 (with dynamic bass boost), Gravity Falls, Faded, Interstellar, Rush E, Seven Nation Army, and Sweet Dreams.
+* **SD Card Progression System:** Automatically creates a `piano_save.txt` file on your TF/SD card to permanently store your per-track High Scores, Star Ratings, and overall pack completion.
 
 ---
 
 ## 🛠 Installation
+
 ### Method 1: M5Burner (Recommended)
 1. Open **M5Burner**.
 2. Search for `Piano Tiles ADV` or `Zeloksa`.
-3. Select version **V1.0**.
+3. Select version **V2.0**.
 4. Burn to your M5Stack Cardputer.
 
 ### Method 2: Manual Flashing
@@ -45,16 +46,18 @@ The entire Cardputer keyboard acts as your piano. The keys are horizontally mapp
 * **[ CTRL, ALT, Space, Z, X, C, V, B, N, M, ,, ., / ]** (Bottom Row): Left Lane / Menu Swipe Left
 * **[ Shift, A, S, D, F, G, H, J, K, L, ;, ', Enter ]** (Middle Row): Center Lane / Menu Select
 * **[ Tab, Q, W, E, R, T, Y, U, I, O, P, [, ], \ ]** (Top Row): Right Lane / Menu Swipe Right
-* **[ 1, 2, 3 ... Backspace, Esc ]** (Number Row): Pause / Resume Game
+* **[ 1, 2, 3 ... Backspace, Esc ]** (Number Row): Pause / Resume Game / Exit Track Select
 
 ---
 
 ## 📖 Comprehensive User Manual
 
 ### 🎵 Main Menu & Progression
-Swipe Left/Right using the top and bottom keyboard rows to navigate the carousel. 
-* Each track displays your personal **High Score (HS)** and up to **3 Stars** based on your best completion percentage (33%, 66%, and 99%).
-* The title uses a mathematical Lissajous curve animation for a smooth, floating UI effect, and each track features custom 8-bit pixel art icons.
+Swipe Left/Right using the top and bottom keyboard rows to navigate between the **5 Music Packs** and Settings. 
+* Press the Middle Row to enter a Pack.
+* Each pack displays an **Animated Emoji** reflecting your overall completion percentage (from sleeping to starry-eyed!).
+* Inside a pack, each track displays your personal **High Score (HS)** and up to **3 Stars** based on your best completion percentage (33%, 66%, and 99%).
+* Each Pack has its own unique background music and animated background that matches the theme.
 
 ### 🎮 Gameplay Mechanics
 Tiles fall down 3 distinct lanes. You must strike any key in the corresponding keyboard row before the tile passes the red hit-zone line at the bottom of the screen.
@@ -74,17 +77,14 @@ Access the Settings menu from the first card in the carousel.
 
 ---
 
-## 🆕 V1.2 Changelog
-* **Major Feature:** Added **Hold Notes** (long tiles) with custom visual saturation and continuous score ticking.
-* **Expanded Library:** Added 5 new tracks (*Faded, Interstellar, Rush E, Seven Nation Army, Sweet Dreams*). Total tracks: 12.
-* **Track Extensions:** Significantly extended the arrangements for *Megalovania, Star Wars, Gravity Falls*, and *Doom E1M1*.
-* **Engine Polish:** Added I2C `holdGrace` mechanism to fix hardware button-drop during long holds. Fully mapped all physical keys to their respective lanes.
-* **Bug Fixes:** Fixed instant-death bug upon track selection, perfectly centered the Pause UI, optimized text shadows.
-* **Audio:** Added a dynamic +90% volume boost specifically for heavy tracks.
-
-## 🚀 Roadmap (Upcoming in V1.3)
-* **Smash Notes Mechanics:** Destructible, multi-hit heavy tiles that slow down time and require rapid button spamming to break.
-* New aggressive tracks designed specifically for the Smash mechanic.
+## 🆕 V2.0 Massive Expansion Update
+* **5 Themed Music Packs:** Classics, Anime Hits, Gaming Legends, Movie Epics, and Rock Legends.
+* **54 Tracks Total:** Added 40 new tracks! Featuring Master Difficulty arrangements for Tokyo Ghoul, Evangelion, Halo, Portal, Pirates of the Caribbean, AC/DC, Queen, and dozens more. 
+* **Complete Overhaul of Track Lengths:** Every track has been rewritten and extended. You can now score a minimum of 1000 points on every single song.
+* **Animated Backgrounds:** 5 custom dynamic backgrounds tied to each pack (Retro Grid, Falling Sakura, Digital Matrix, Scrolling Film, Concert Lasers).
+* **Thematic Background Music:** 5 unique BGM loops that play while navigating the track selection menus.
+* **Progress Emojis:** A new procedural emoji face tracks your completion rate for each pack in real-time.
+* **UI & Visual Upgrades:** 54 ultra-detailed, multi-layered 8-bit icons. Improved UI animations and smoother track carousel navigation.
 
 ---
 
